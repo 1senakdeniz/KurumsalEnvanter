@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Bir Hata Oluştu";
+}
+
+<div class="container text-center mt-5 py-5">
+    <div class="card shadow-lg mx-auto" style="max-width: 600px;">
+        <div class="card-body p-5">
+            <h1 class="display-1 text-danger font-weight-bold">!</h1>
+            <h3 class="mb-3">İşlem Gerçekleştirilemedi</h3>
+            <p class="lead text-muted mb-4">
+                @(ViewBag.ErrorMessage ?? "İstediğiniz işlem sırasında bir hata oluştu.")
+            </p>
+            <hr class="my-4" />
+            <a href="/Home/Index" class="btn btn-primary btn-lg">
+                &larr; Ana Sayfaya Dön
+            </a>
+        </div>
+    </div>
+</div>

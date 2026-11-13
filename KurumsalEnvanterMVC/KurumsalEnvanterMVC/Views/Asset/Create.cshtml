@@ -1,0 +1,46 @@
+﻿@model KurumsalEnvanterMVC.Models.Entities.Asset
+
+@{
+    ViewData["Title"] = "Yeni Demirbaş Ekle";
+}
+
+<div class="container mt-4">
+    <h2>Yeni Demirbaş Kaydı</h2>
+    <hr />
+
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label class="form-label">Demirbaş Adı</label>
+            <input asp-for="AssetName" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Seri Numarası</label>
+            <input asp-for="SerialNumber" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cihaz Kategorisi</label>
+            <select asp-for="CategoryID" asp-items="ViewBag.Categories" class="form-select" required>
+                <option value="">-- Kategori Seçiniz --</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Zimmetlenecek Personel (Opsiyonel)</label>
+            <select asp-for="AssignedEmployeeID" asp-items="ViewBag.Employees" class="form-select">
+                <option value="">-- Seçiniz (Stokta Bırak) --</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Satın Alma Tarihi</label>
+            <input asp-for="PurchaseDate" type="date" class="form-control" required />
+        </div>
+
+        <div class="d-flex gap-2">
+            <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            <button type="submit" class="btn btn-success">Envanteri Kaydet</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa - Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="jumbotron bg-light p-4 mb-4 rounded shadow-sm">
+        <h1 class="display-4">Kurumsal Envanter Yönetim Sistemi</h1>
+        <p class="lead">Şirket bünyesindeki tüm demirbaşları, kategorileri ve personel zimmet kayıtlarını bu panel üzerinden anlık olarak yönetebilirsiniz.</p>
+    </div>
+
+    <!-- İstatistik Kartları Satırı -->
+    <div class="row">
+        <!-- Kart 1: Toplam Demirbaş -->
+        <div class="col-md-3 mb-3">
+            <div class="card bg-primary text-white shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h6 class="card-title text-uppercase opacity-75">Toplam Demirbaş</h6>
+                        <h2 class="display-5 font-weight-bold">@ViewBag.TotalAssets</h2>
+                    </div>
+                    <a href="/Asset/Index" class="text-white text-decoration-none small mt-3">Detayları Gör &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kart 2: Stoktaki Cihazlar -->
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h6 class="card-title text-uppercase opacity-75">Stoktaki Envanter</h6>
+                        <h2 class="display-5 font-weight-bold">@ViewBag.InStockAssets</h2>
+                    </div>
+                    <a href="/Asset/Index" class="text-white text-decoration-none small mt-3">Detayları Gör &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kart 3: Zimmetli Cihazlar -->
+        <div class="col-md-3 mb-3">
+            <div class="card bg-warning text-dark shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h6 class="card-title text-uppercase opacity-75">Zimmetlenen Envanter</h6>
+                        <h2 class="display-5 font-weight-bold">@ViewBag.AssignedAssets</h2>
+                    </div>
+                    <a href="/Asset/Index" class="text-dark text-decoration-none small mt-3">Detayları Gör &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kart 4: Toplam Personel -->
+        <div class="col-md-3 mb-3">
+            <div class="card bg-info text-white shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h6 class="card-title text-uppercase opacity-75">Aktif Personel</h6>
+                        <h2 class="display-5 font-weight-bold">@ViewBag.TotalEmployees</h2>
+                    </div>
+                    <a href="/Employee/Index" class="text-white text-decoration-none small mt-3">Detayları Gör &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model KurumsalEnvanterMVC.Models.Entities.Asset
+
+@{
+    ViewData["Title"] = "Demirbaş Düzenle";
+}
+
+<div class="container mt-4" style="max-width: 700px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Demirbaş & Zimmet Bilgisi Güncelleme</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="AssetID" />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="AssetName" class="form-label">Demirbaş Adı</label>
+                        <input asp-for="AssetName" class="form-control" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="SerialNumber" class="form-label">Seri / Barkod No</label>
+                        <input asp-for="SerialNumber" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CategoryID" class="form-label">Cihaz Kategorisi</label>
+                        <select asp-for="CategoryID" class="form-select" required>
+                            @foreach (var cat in ViewBag.Categories)
+                            {
+                                <option value="@cat.CategoryID" selected="@(cat.CategoryID == Model.CategoryID)">@cat.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="PurchaseDate" class="form-label">Satın Alma Tarihi</label>
+                        <input asp-for="PurchaseDate" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" required />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AssignedEmployeeID" class="form-label">Zimmet Durumu Değiştir / Kişi Ata</label>
+                    <select asp-for="AssignedEmployeeID" class="form-select">
+                        <option value="">-- Boşa Çıkar (Stoğa Çek) --</option>
+                        @foreach (var emp in ViewBag.Employees)
+                        {
+                            <option value="@emp.EmployeeID" selected="@(emp.EmployeeID == Model.AssignedEmployeeID)">@emp.FullName - @emp.Department</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a asp-action="Index" class="btn btn-secondary btn-sm">İptal</a>
+                    <button type="submit" class="btn btn-warning btn-sm">Değişiklikleri Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

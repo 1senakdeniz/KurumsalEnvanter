@@ -1,0 +1,53 @@
+﻿@model KurumsalEnvanterMVC.Models.Entities.Employee
+
+@{
+    ViewData["Title"] = "Personel Zimmet Detayı";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Personel Profil & Zimmet Detayı</h4>
+            <a asp-action="Index" class="btn btn-outline-light btn-sm">&larr; Personel Listesine Dön</a>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4"><strong>Adı Soyadı:</strong> @Model.FullName</div>
+                <div class="col-md-4"><strong>E-Posta:</strong> @Model.Email</div>
+                <div class="col-md-4"><strong>Departman:</strong> @Model.Department</div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="mb-3">Bu Personele Zimmetlenmiş Envanterler</h5>
+    @if (Model.Assets != null && Model.Assets.Any())
+    {
+        <table class="table table-bordered table-hover">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Barkod/Seri No</th>
+                    <th>Demirbaş Adı</th>
+                    <th>Kategori</th>
+                    <th>Satın Alma Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.Assets)
+                {
+                    <tr>
+                        <td><code>@asset.SerialNumber</code></td>
+                        <td>@asset.AssetName</td>
+                        <td>@(asset.Category != null ? asset.Category.CategoryName : "Belirtilmemiş")</td>
+                        <td>@asset.PurchaseDate.ToString("dd.MM.yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Bu personele ait aktif bir zimmet kaydı bulunmamaktadır.
+        </div>
+    }
+</div>
